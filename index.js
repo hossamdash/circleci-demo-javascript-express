@@ -2,6 +2,9 @@
  * Entry Script
  */
 
+/*
+test comment because i know jack shit about javascript
+*/
 if (process.env.NODE_ENV === 'production') {
   process.env.webpackAssets = JSON.stringify(require('./dist/manifest.json'));
   process.env.webpackChunkAssets = JSON.stringify(require('./dist/chunk-manifest.json'));
