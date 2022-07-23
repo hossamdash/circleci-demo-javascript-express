@@ -1,0 +1,33 @@
+---
+- name: "update apt packages."
+  become: true
+  apt:
+    update_cache: true
+
+- name: "upgrade packages"
+  become: true
+  apt:
+    upgrade: yes
+    autoclean: true
+
+- name: "install packages"
+  become: true
+  apt:
+    name: ["npm","nodejs"]
+    state: latest
+
+- name: "install pm2"
+  shell: "npm install pm2 -g"
+
+- name: "make directory"
+  file:
+    path: ~/web
+    state: directory
+
+- name: "copy server js"
+  copy:
+    src: index.js
+    dest: ~/web/index.js
+
+- name: starting the web server
+  shell: pm2 start ~/web/index.js -f
